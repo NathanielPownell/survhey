@@ -1,0 +1,26 @@
+.responses-table{
+    display: flex;
+    flex-direction: column;
+}
+
+.response-user{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.responses-table td {
+    padding: 5px;
+    border: 1px solid gray;
+}
+.response-group {
+    display: flex;
+    align-items: center;
+    padding-block: 10px;
+    gap: 20px;
+}
+.img-smaller {
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,41 @@
+.profile-image-img{
+    width: 110px;
+    height: 110px;
+    image-rendering: auto;
+    border-radius: 100%;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    
+    /* background-position: center; */
+    /* height: 200px; */
+}
+ 
+.profile-image-img-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.update-form{
+    display: flex;
+}
+
+.profile-actions{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.name-input {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+.name-change-form {
+    font-size: 1em;
+}
+
+.delete-actions{
+    height: 150px;
+    align-items: flex-end;
+}

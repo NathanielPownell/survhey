@@ -1,0 +1,17 @@
+.NotFound {
+    height: 80vh;
+    width: 100vw;
+    background-color: white;
+    color: black;
+    text-align: center;
+    display: grid;
+    place-content: center;
+}
+
+.NotFound img{
+    width: 200px;
+}
+
+.NotFound h2{
+    color: black;
+}

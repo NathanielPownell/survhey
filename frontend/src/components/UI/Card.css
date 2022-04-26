@@ -1,0 +1,228 @@
+.card {
+    display: flex;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.315);
+    width: 100%;
+    background-color: white;
+    max-width: 80vw;
+}
+
+.mainContent {
+
+    min-width: fit-content;
+    max-width: 800px;
+    background: rgba(235, 235, 235, 0);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.question {
+    background-color: rgb(255, 255, 255);
+
+    /* min-height: 400px; */
+    /* min-width: 500px; */
+    min-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;    
+}
+
+.choice {
+    max-width: fit-content;
+    transition: all .3s ease-in-out;
+    margin: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.choice:hover {
+    box-shadow: 3px 13px 9px rgba(0, 0, 0, 0.315);
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+.active {
+    /* transition: none; */
+    background: linear-gradient(45deg, rgb(174, 0, 255) 0%, rgb(232, 169, 255) 100%);
+    /* border: 2px solid rgb(55, 1, 71); */
+    
+}
+
+.active div img {
+    opacity: 1;
+}
+
+.login {
+    width: fit-content;
+    min-width: 200px;
+    padding: 50px 80px;
+    background-color: white;
+}
+
+.surveypreview {
+    min-width: 300px;
+    width: fit-content;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.authorCard{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    align-items: center;
+    width: fit-content;
+    padding: 30px;
+}
+
+.nameInputCard {
+    flex-direction: column;
+    z-index: 3;
+    max-width: 400px;
+    align-items:center;
+    margin: 0;
+    background: rgb(255, 255, 255);
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: black;
+}
+
+.surveypreview {
+    
+    min-width: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    background: white;
+}
+
+.dashCard{
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    cursor: pointer;
+}
+
+.dashCard.purple{
+    color: white;
+    background: linear-gradient(-45deg, #EDBBFF, #BD00FF);
+    flex-direction: row;
+}
+
+.dashCard.purple div{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* gap: 20px; */
+    min-height: 100%;
+    justify-content: center;
+}
+
+.addCard {
+    width: fit-content;
+    align-items: center;
+    color: gray;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.addCard:hover{
+    color: black;
+}
+
+.dashCard.grey {
+    background: linear-gradient(65deg, rgb(180, 180, 180), rgb(248, 248, 248));
+}
+
+.survey {
+    /* width: fit-content; */
+    min-width: 400px;
+    max-width: 60vw;
+    flex-direction: column;
+    min-height: 200px;
+    justify-content: space-between;
+}
+
+.isOwner {
+    background-color: hsl(0, 0%, 100%);
+    color: #000000;
+}
+
+.surveyForm{
+    flex-direction: column;
+    min-width: 400px;
+    width: fit-content;
+    transition: all .3s ease-in-out;
+}
+
+.finished{
+    color: rgba(0, 128, 0, 0.459);
+}
+
+.disabled *{
+    height: 0px;
+    opacity: 0;
+    cursor: not-allowed;
+    user-select: none;
+    overflow: hidden;
+}
+
+.surveyForm input{
+    max-width: 100%;
+}
+
+.option {
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 70%;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.343);
+}
+
+.profile {
+    width: 500px;
+    max-width: 80vw;
+    align-items: center;
+    flex-direction: column;
+}
+
+.surveys-list .survey{
+    min-width: 100%;
+    max-height: fit-content;
+    min-height: fit-content;
+    gap: 5px;
+}
+
+.modal-card {
+    background-color: white;
+    display: flex;
+    width: 300px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .card{
+      margin-inline: 0;
+    }
+  }

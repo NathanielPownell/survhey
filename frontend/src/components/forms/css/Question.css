@@ -1,0 +1,19 @@
+.question-edit {
+    width: 300px;
+    height: fit-content;
+    resize: none;
+    font-size: 1em;
+}
+
+.question-question-preview {
+    max-width: 100%;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+}
+
+.question-question-preview p {
+    max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+}

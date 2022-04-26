@@ -1,0 +1,25 @@
+.progress-track {
+    height: 15px;
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    border-radius: 3px;
+}
+.progress-bar {
+    transition: all .3s ease-in-out;
+    height: 15px;
+    background: linear-gradient(9deg, rgb(177, 50, 205), rgb(149, 0, 255));
+    border-radius: 3px;
+}
+
+.survey-owner-info{
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.survey-owner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

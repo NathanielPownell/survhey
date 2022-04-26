@@ -1,0 +1,130 @@
+.button {
+    height: fit-content;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 10px 15px;
+    /* margin: 15px; */
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.363);
+    border: none;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    white-space: nowrap;
+}
+
+.button a{
+    color: white;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+
+.regular {
+    background: rgb(238,165,121);
+    background: linear-gradient(45deg, rgb(27, 4, 112) 0%, rgb(189, 4, 255) 100%);    
+}
+
+.regular:hover {
+    /* transform: translateY(-1px); */
+}
+
+.light {
+    background: rgb(174, 0, 255);
+    color: white;
+    font-weight: bold;
+}
+
+.danger {
+    background: rgb(184, 17, 17);
+}
+
+.danger:hover {
+    background: maroon;
+}
+
+.outlined {
+    font-size: 1.2em;
+    color: #000;
+    background: none;
+    outline: 2px solid;
+    opacity: .7;
+}
+.outlined a {
+    color: black;
+}
+
+.outlined:hover {
+    opacity: 1;
+}
+
+.small {
+    font-size: 1em;
+    padding: 5px 8px;
+    font-weight: normal;
+    transition: all .1s ease-in-out;
+}
+
+.small:hover{
+    /* transform: translateY(-2px); */
+}
+
+.big {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+
+.round {
+    border-radius: 70px;
+}
+
+.round:hover {
+    /* transform: translateX(15px); */
+}
+
+.white {
+    color: white;
+}
+
+.loginBtn{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button a {
+    display: flex;
+    align-items: center;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.maxwide {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.maxwide:hover{
+    transform: translate(0);
+}
+
+.maxheight{
+    min-height: 100%;
+    font-size: 1.5em;
+    flex-direction: column;
+}

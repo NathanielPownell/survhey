@@ -1,0 +1,29 @@
+.answer-form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.radio-input{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.input:invalid{
+    border: 2px dashed blue;
+    outline: none;
+}
+
+.form-textarea {
+    resize: none;
+    max-width: 100%;
+    height: 200px;
+    width: 300px;
+    max-height: 200px;
+}
