@@ -4,15 +4,7 @@ import './css/Splash.css'
 import survheyArt from '../assets/survheygraphic3d.png'
 import boxesImg from '../assets/boxes.png'
 import { Link } from 'react-router-dom'
-import {
-    useTransition,
-    useSpring,
-    useChain,
-    config,
-    animated,
-    useSpringRef,
-    useSprings,
-} from '@react-spring/web'
+
 
 
 const Heading = () => {
@@ -44,11 +36,9 @@ const Splash = () => {
     const [fade, setFade] = useState(true)
 
     useEffect(() => {
-        // if (items.length === 0) {
             setTimeout(() => {
                 setFade(false)
             }, 300)
-        // }
     }, [items])
 
     return (
