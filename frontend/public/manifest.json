@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Survhey - Create Surveys Online",
+  "name": "Survhey",
   "icons": [
     {
       "src": "favicon.ico",
