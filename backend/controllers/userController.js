@@ -106,12 +106,10 @@ const updateUser = asyncHandler(async (req, res) => {
         acceptedCookies: true,
     }, function (err, user) {
         if (err) {
-            console.log("Error occured userController.js 81:")
             res.status(400)
             throw new Error('Invalid user data')
         }
         else {
-            console.log("Updated User : ", user, acceptedCookies);
             res.status(201).json({
                 _id: user.id,
                 name: name,

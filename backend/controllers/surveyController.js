@@ -43,7 +43,6 @@ const getSurvey = asyncHandler(async (req, res) => {
 // @access  Private
 const getUserSurveys = asyncHandler(async (req, res) => {
     const surveys = await Survey.find({ user: req.params.id })
-    console.log('getting user surveys for ' + req.params.id)
     res.status(200).json(surveys)
 })
 
@@ -56,7 +55,6 @@ const createSurvey = asyncHandler(async (req, res) => {
 
     if (!title) {
         res.status(400)
-        console.log("400")
         throw new Error('Please add all fields.')
     }
 
@@ -79,7 +77,6 @@ const createSurvey = asyncHandler(async (req, res) => {
 
 
     if (survey) {
-        console.log("should be working")
         res.status(201).json({
             _id: survey.id,
             title: survey.title,
@@ -91,7 +88,6 @@ const createSurvey = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400)
-        console.log('Not working')
         throw new Error('Invalid survey data')
     }
 

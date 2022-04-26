@@ -14,7 +14,6 @@ const profanity = new Profanity(options);
 // @access  Public
 const getQuestions = asyncHandler(async (req, res) => {
     const questions = await Question.find({ survey: req.body.survey })
-    console.log(req.body.survey)
     res.status(200).json(questions)
 })
 
@@ -52,7 +51,6 @@ const createQuestion = asyncHandler(async (req, res) => {
 
     if (!survey || !text) {
         res.status(400)
-        console.log(survey, text, type, choices)
         throw new Error('Please add all fields.')
     }
 
@@ -129,7 +127,6 @@ const updateQuestion = asyncHandler(async (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(docs)
             // res.status(201).json({
             //     _id: id,
             //     text: text,
@@ -139,7 +136,6 @@ const updateQuestion = asyncHandler(async (req, res) => {
             // const question = Question.findById(id)
         
             // if (question) {
-            //     console.log("oorah")
             //     res.status(201).json({
             //         _id: id,
             //         text: text,
