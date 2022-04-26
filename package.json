@@ -1,9 +1,6 @@
 {
   "name": "survhey",
   "version": "1.0.0",
-  "engines": {
-    "node": "v14.18.1"
-  },
   "description": "Survey creation app",
   "main": "server.js",
   "scripts": {
