@@ -17,7 +17,7 @@ const Brief = () => {
     return (
         <p className='brief'>
             <b>Surv<span style={{ color: "rgba(142,0,224,1)" }}>hey! </span></b>
-            is a <b>free</b> and <b>simple,</b> and <b>fun </b>
+            is a <b>free,</b> <b>simple</b> and <b>fun </b>
             app for creating and sharing surveys and questionnaires.
         </p>
     )
