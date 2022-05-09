@@ -7,6 +7,8 @@ import surveyImg from '../assets/survhey.png'
 import './Header.css'
 import Button from './UI/Button'
 import Hamburger from '../components/UI/Hamburger'
+import { Avatar } from '@mui/material'
+
 const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -40,7 +42,7 @@ const Header = () => {
                         <li>
                             <Link to="/profile">
                                 {user.img ?
-                                    <div className="profile-image-img profile-image-img-small" style={{ background: `url(${user.img ? user.img : null})`, backgroundSize: "cover" }} />
+                                    <Avatar alt={user.name} src={user.img} />
                                     :
                                     <p>Profile</p>
                                 }

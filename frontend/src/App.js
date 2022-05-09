@@ -18,12 +18,15 @@ import EditSurvey from './pages/EditSurvey';
 import User from './pages/User';
 import Splash from './pages/Splash';
 import Feedback from './pages/Feedback';
+import {theme} from './themes/theme'
+import { ThemeProvider } from '@emotion/react';
+
 
 function App() {
   return (
     <>
     <Router>
-
+    <ThemeProvider theme={theme}>
       <div className='container'>
         <Header />
         <Routes>
@@ -44,6 +47,7 @@ function App() {
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </div>
+      </ThemeProvider>
     </Router>
     <ToastContainer />
     </>

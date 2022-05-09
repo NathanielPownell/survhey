@@ -1,4 +1,4 @@
-.question-question-preview{
+.question-question-preview {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,11 +6,13 @@
     border-radius: 5px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.428);
 }
-.form-group.colors{
+
+.form-group.colors {
     display: flex;
     height: 60px;
     gap: 5px;
 }
+
 .color {
     border-collapse: collapse;
     box-sizing: border-box;
@@ -26,12 +28,12 @@
     justify-content: center;
 }
 
-.color.chosen{
+.color.chosen {
     width: 55px;
     height: 55px;
 }
 
-.badge{
+.badge {
     display: flex;
     padding: 5px;
     background-color: rgb(255, 255, 255);
@@ -39,7 +41,7 @@
     border-radius: 30px;
 }
 
-.link{
+.link {
     box-sizing: border-box;
     border-collapse: collapse;
     cursor: pointer;
@@ -51,13 +53,54 @@
     height: fit-content;
 }
 
-.link span{
+.link span {
     padding-inline: 9px;
     border-radius: 0 5px 5px 0;
     background-color: rgba(137, 43, 226, 0.37);
     border: 2px solid rgba(0, 0, 0, 0.587);
 }
 
-.link:hover{
+.link:hover {
     background-color: rgba(0, 0, 0, 0.22);
+}
+
+.wizard {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 650px;
+}
+
+.stepContainer {
+    position: absolute;
+    align-self: center;
+    height: 600px;
+    z-index: 1;
+    opacity: .5;
+    transition: all .3s ease-in-out;
+}
+
+.firstStep {
+    left: calc(50% - 250px); /* 250px == 500px (width of card) / 2 */
+    transform: translateX(-40px) scale(1);
+}
+
+.secondStep {
+    left: calc(50% - 250px); /* 250px == 500px (width of card) / 2 */
+    transform: translateX(20px) scale(1);
+}
+
+.secondStep.thirdIsActive {
+    transform: translateX(-20px);
+}
+
+.thirdStep {
+    left: calc(50% - 250px); /* 250px == 500px (width of card) / 2 */
+    transform: translateX(40px) scale(1);
+}
+
+.activeStep {
+    z-index: 3;
+    opacity: 1;
+    transform: translateX(0px) scale(1.02);
 }

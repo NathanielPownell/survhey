@@ -29,9 +29,7 @@
     background: linear-gradient(45deg, rgb(27, 4, 112) 0%, rgb(189, 4, 255) 100%);    
 }
 
-.regular:hover {
-    /* transform: translateY(-1px); */
-}
+
 
 .light {
     background: rgb(174, 0, 255);
@@ -127,4 +125,9 @@
     min-height: 100%;
     font-size: 1.5em;
     flex-direction: column;
+}
+
+.button:disabled{
+    opacity: .5;
+    cursor:not-allowed;
 }

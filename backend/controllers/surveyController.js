@@ -131,7 +131,7 @@ const updateSurvey = asyncHandler(async (req, res) => {
         } else {
             console.log("Updated Survey : ", docs)
         }
-    })
+    }).clone()
 
 })
 

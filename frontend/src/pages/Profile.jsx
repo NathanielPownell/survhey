@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Button from '../components/UI/Button'
+import {Avatar, Button} from '@mui/material'
 import Card from '../components/UI/Card'
 import { useSelector, useDispatch } from 'react-redux'
 import uploadImage from '../utils/uploadImage'
@@ -12,6 +12,7 @@ import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import MySurveys from './MySurveys'
+// import Spinner from '../components/Spinner'
 
 const Profile = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
@@ -22,7 +23,6 @@ const Profile = () => {
     const [uploadingImg, setUploadingImg] = useState(false)
     const [formData, setFormData] = useState()
     const [deleting, setDeleting] = useState(false)
-    // const { name, email, password, password2, img } = formData
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -51,6 +51,7 @@ const Profile = () => {
         }
 
         dispatch(updateUser(userData))
+        setFormData(null)
         setIsEditing(false)
         toast.success("Profile updated! Changes may take a few minutes.", {
             autoClose: 4000,
@@ -81,16 +82,15 @@ const Profile = () => {
             <Card type="profile">
                 <div className='profile-actions'><Button onClick={() => { setIsEditing(!isEditing) }} variety="small outlined">
                     {isEditing ? (
-                        <div>Done</div>
+                        <div>Cancel</div>
                     ) : (
                         <div> Edit Profile <FaEdit /> </div>
                     )}
 
                 </Button></div>
                 <div className='profile-image'>
-                    {user.img &&
-                        <div className="profile-image-img" style={{ background: `url(${user.img ? user.img : null})`, backgroundSize: "cover" }} />
-                    }
+                    
+                        <Avatar alt={user.name} src={formData ? formData : user.img ? user.img : null} sx={{ width: 80, height: 80 }} />
                 </div>
                 {isEditing ? (
 
@@ -100,14 +100,19 @@ const Profile = () => {
                             <input onChange={handleFileChange} value={file} type="file" />
                             <label >👤 Change Display Name</label>
                             <input onChange={handleNameChange} className='name-input' type="text" value={name} id="name" />
+                            <Button type="submit" variant='contained' disabled={uploadingImg | false}> 
                             {uploadingImg ? (
-                                <>
-                                    📡 Uploading Image ...
-                                </>
+                                "📡 Uploading Image ..."
                             ) : (
-                                <Button variety="small regular">Save</Button>
+                                "Save"
+
                             )}
-                            {/* <Button variety="small outlined">Upload</Button> */}
+                            
+                            </Button>
+                            
+                            {/* <Button onClick={() => { 
+                                setIsEditing(!isEditing) 
+                                setFormData(null) }} variety="small outlined">Cancel</Button> */}
                         </form>
                     </div>
                 ) : (

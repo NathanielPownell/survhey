@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FaCheck, FaRegEdit, FaTrash } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { deleteQuestion, updateQuestion } from '../../features/questions/questionSlice'
+import { Button, IconButton } from '@mui/material'
 // import QuestionForm from './QuestionForm'
 import './css/Question.css'
 
@@ -52,11 +53,17 @@ const Question = ({ question, id }) => {
 
             <span>
                 {editing ? (
-                    <FaCheck cursor={"pointer"} color='#080' onClick={() => { handleEditQuestion(question) }} />
+                    <IconButton size="small" >
+                        <FaCheck cursor={"pointer"} color='#080' onClick={() => { handleEditQuestion(question) }} />
+                    </IconButton>
                 ) : (
-                    <FaRegEdit cursor={"pointer"} onClick={() => { handleEditQuestion(question) }} />
+                    <IconButton size="small" >
+                        <FaRegEdit cursor={"pointer"} onClick={() => { handleEditQuestion(question) }} />
+                    </IconButton>
                 )}
-                <FaTrash className='pointer' color='#f00' onClick={() => { handleDeleteQuestion(question._id) }} />
+                <IconButton size="small" color="error">
+                    <FaTrash className='pointer' color='#f00' onClick={() => { handleDeleteQuestion(question._id) }} />
+                </IconButton>
             </span>
 
         </div>

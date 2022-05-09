@@ -86,7 +86,7 @@ const Login = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <Button variety="regular loginBtn">
+                                    <Button disabled={formData.email && formData.password ? false : true} variety="regular loginBtn">
                                         Log In
                                     </Button>
                                     <a href="register">

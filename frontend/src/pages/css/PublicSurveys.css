@@ -27,9 +27,12 @@
 
 .surveys-grid {
     justify-content: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 15px;
     /* width: 600px; */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .surveys-list {

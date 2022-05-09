@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../components/UI/Button'
+import { Button } from '@mui/material'
 import Card from '../components/UI/Card'
 import { useDispatch, useSelector } from 'react-redux'
 import QuestionForm from '../components/forms/QuestionForm'
@@ -7,18 +7,20 @@ import Question from '../components/forms/Question'
 import { createSurvey, deleteSurvey, getSurvey, reset, updateSurvey } from '../features/surveys/surveySlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getQuestionsBySurvey, deleteQuestion } from '../features/questions/questionSlice'
-import { Link } from 'react-router-dom'
 import { reset as resetQuestions } from '../features/questions/questionSlice'
 import { FaCheck, FaRegEdit, FaTrash } from 'react-icons/fa'
 import './css/CreateSurvey.css'
 import { toast } from 'react-toastify'
+import { FormControl, InputLabel, MenuItem, Select, StepLabel, Stepper, Step, StepButton, Typography, Box } from '@mui/material'
 
 const CreateSurvey = () => {
-  const [submittedDetails, setSubmittedDetails] = useState(false)
-  const [finished, setFinished] = useState(false)
+  let id = useParams().id;
+  /* Redux Slices */
   const { user } = useSelector((state) => state.auth)
   const { surveys } = useSelector((state) => state.surveys)
   const { questions } = useSelector((state) => state.questions)
+
+  /* Form Data Stuff */
   const [surveyColor, setSurveyColor] = useState("white")
   const colors = [
     "white",
@@ -29,19 +31,89 @@ const CreateSurvey = () => {
     "#00dcff",
     "#bd00ff"
   ]
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  let id = useParams().id;
   const [formData, setFormData] = useState({
     survey: id ? id : "",
     // user: user._id,
     title: "",
-    public: "true",
+    public: true,
     description: "",
     password: "",
     enableanon: true,
     color: surveyColor,
   })
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  /* Stepper stuff */
+  const [activeStep, setActiveStep] = useState(0);
+  const [completed, setCompleted] = useState({});
+
+  const totalSteps = () => {
+    return 3;
+  };
+
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps();
+  };
+
+  const handleNext = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    if (isLastStep()) {
+      console.log("last")
+      navigate('/mysurveys/')
+    }
+    setCompleted(newCompleted);
+    const newActiveStep =
+      isLastStep() ? 2 : activeStep + 1;
+    setActiveStep(newActiveStep);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStep = (step) => () => {
+    // if (activeStep == 0) {
+    //   console.log("Put")
+    //   setFormData((prevState) => ({
+    //     ...prevState,
+    //     color: surveyColor,
+    //   }))
+    //   if (id) {
+    //     dispatch(updateSurvey(formData))
+    //   } else {
+    //     dispatch(createSurvey(formData))
+    //     dispatch(getQuestionsBySurvey(id))
+    //   }
+    // }
+    // if (activeStep === 2) {
+    //   navigate('/')
+    // }
+    setActiveStep(step);
+  };
+
+  const handleComplete = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    setCompleted(newCompleted);
+    handleNext();
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+    setCompleted({});
+  };
+
 
   const handleDelete = () => {
     dispatch(deleteSurvey(id))
@@ -49,16 +121,18 @@ const CreateSurvey = () => {
   }
 
   useEffect(() => {
-    console.log(surveyColor)
     if (id) {
-      setSubmittedDetails(true)
+      // setSubmittedDetails(true)
       dispatch(getQuestionsBySurvey(id))
       dispatch(getSurvey(id))
       setSurveyColor(surveys.color)
     }
     if (surveys) {
-      console.log('resetting surveys')
-      dispatch(reset())
+
+      // dispatch(reset())
+      if (id) {
+        dispatch(getSurvey(id))
+      }
     }
     return () => {
       dispatch(resetQuestions())
@@ -73,7 +147,7 @@ const CreateSurvey = () => {
         {
           survey: id,
           title: surveys.title,
-          public: surveys.isPublic,
+          public: surveys.public,
           description: surveys.description,
           password: "",
           enableanon: surveys.enableanon,
@@ -104,7 +178,7 @@ const CreateSurvey = () => {
     }
   }, [surveys._id])
 
-  const copyLink = () =>{
+  const copyLink = () => {
     navigator.clipboard.writeText(window.location.href.replace(/create/g, 'survey'));
     toast.success('Link Copied!')
   }
@@ -122,152 +196,195 @@ const CreateSurvey = () => {
       dispatch(createSurvey(formData))
       dispatch(getQuestionsBySurvey(id))
     }
-    setSubmittedDetails(true)
+    handleNext();
+
   }
 
-  if (finished) {
+  const RenderCurrentStep = () => {
+
     return (
-      <div style={{ backgroundColor: surveyColor, backgroundImage: `linear-gradient(${surveyColor},rgba(0, 0, 0, 0.5))` }} className='contentContainer'>
-        <h3>Survey Review</h3>
-        <Card type="profile">
-          <h3>{surveys.title}</h3>
-          <h4>Copy the Link and Share!</h4>
-          <div onClick={copyLink} className='link'>{window.location.href.replace(/create\//g, '')} <span>🔗</span></div>
-          <p>{questions.length} questions</p>
-          <ol>
+      <div className='wizard'>
+        <div className={`stepContainer firstStep ${activeStep === 0 && 'activeStep'}`}>
+          <Card type="profile step">
+            <form onSubmit={onSubmit}>
+              <div className='form-group'>
+                <label htmlFor="title">Survey Title</label>
 
-            {questions.map((question) => (
-              <li>
-                {question.text}
-              </li>
-            ))}
-          </ol>
-          <div style={{display: "flex", gap: "20px", margin: "30px"}}>
+                <input required placeholder={`${user.name}'s Epic Survey`} onChange={onChange} value={formData.title} type="text" id="title" name="title" />
+              </div>
+              <div className='form-group'>
+                <label htmlFor="description">Survey Description</label>
+                <textarea required placeholder='A survey with questions about epic things' style={{ resize: "none" }} value={formData.description} onChange={onChange} type="text" id="description" name="description" />
+              </div>
+              <div className='form-group' >
+                <FormControl fullWidth>
 
-            <Button onClick={() => {setFinished(false)}} variety="outlined">Edit</Button>
-            <Button onClick={() => {navigate('/mysurveys')}} variety="regular">Done</Button>
-          </div>
-        </Card>
+                  <InputLabel for="public">Public or Private?</InputLabel>
+
+
+                  <Select required onChange={onChange} value={formData.public} label="Public or Private?" name="public" id="public">
+                    <MenuItem value={true}>Public</MenuItem>
+                    <MenuItem value={false}>Private 🔒</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+
+              <div className='form-group'>
+                <label for="title">Survey Color</label>
+                <div className='form-group colors'>
+                  {colors.map((color) => (
+                    <div onClick={() => (handleColorChange(color))} className={`color ${surveyColor === color ? ("chosen") : ("")}`} style={{ background: color }}>
+                      {surveyColor === color ? (
+                        <div className='badge'>
+                          <FaCheck />
+                        </div>
+                      ) : (<></>)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Button
+                  variant="contained"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Back
+                </Button>
+                <Box sx={{ flex: '1 1 auto' }} />
+
+
+                <Button onClick={onSubmit} disabled={formData.title === "" || formData.description === ""} variant="contained">
+                  {activeStep === 2
+                    ? 'Finish'
+                    : 'Next'}
+                </Button>
+
+              </Box>
+            </form>
+          </Card>
+        </div>
+        <div className={`stepContainer secondStep ${activeStep === 1 && 'activeStep'} ${activeStep === 2 && 'thirdIsActive'}`}>
+          <Card type="profile step">
+            <QuestionForm />
+
+            <Card type={`surveyForm question-list`}>
+
+              {questions.length > 0 ? (
+
+                <>
+                  <h3><span>{questions.length}</span> Questions </h3>
+
+                  {questions.map((question) => (
+                    <>
+                      <Question key={question._id} id={id} question={question} />
+                    </>
+                  ))}
+                </>
+              ) : (
+                <h4>No questions! 🤷‍♂️</h4>
+              )
+              }
+
+            </Card>
+
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Button
+                variant="contained"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
+              </Button>
+              <Box sx={{ flex: '1 1 auto' }} />
+
+
+              <Button onClick={onSubmit} disabled={formData.title === "" || formData.description === ""} variant="contained">
+                {activeStep === 2
+                  ? 'Finish'
+                  : 'Next'}
+              </Button>
+
+            </Box>
+          </Card>
+        </div>
+
+        <div className={`stepContainer thirdStep ${activeStep === 2 && 'activeStep'}`}>
+          <Card type="profile step">
+            <h3>{surveys.title}</h3>
+            <h4>Copy the Link and Share!</h4>
+            <div></div>
+            <div onClick={copyLink} className='link'>{window.location.href.replace(/create\//g, '')}<span>🔗</span></div>
+            <p>{questions.length} questions</p>
+            <ol>
+
+              {questions.map((question) => (
+                <li>
+                  {question.text}
+                </li>
+              ))}
+            </ol>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Button
+                variant="contained"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
+              </Button>
+              <Box sx={{ flex: '1 1 auto' }} />
+
+
+              <Button onClick={onSubmit} disabled={formData.title === "" || formData.description === ""} variant="contained">
+                {activeStep === 2
+                  ? 'Finish'
+                  : 'Next'}
+              </Button>
+
+            </Box>
+          </Card>
+        </div>
       </div>
     )
   }
 
+
   return (
     <div style={{ backgroundColor: surveyColor, backgroundImage: `linear-gradient(${surveyColor},rgba(0, 0, 0, 0.5))` }} className='contentContainer'>
-      {id ? (
-        <h3>Edit Survey ✏️</h3>
-      ) : (
-        <h3>Build a Survey 📋</h3>
-      )}
-      <section>
-        <Card type={`surveyForm ${submittedDetails ? "finished" : ""}`}>
-
-          <h3>Step 1: Survey Details</h3>
-          {submittedDetails ? (
-            <p>Finished!</p>
-          ) : (
-            <>
-            </>
-          )}
-
-
-          <form onSubmit={onSubmit}>
-            <div className='form-group'>
-              <label for="title">Survey Title</label>
-              {/* value={surveys.title ? surveys.title : formData.title} */}
-              <input required placeholder={`${user.name}'s Epic Survey`} onChange={onChange} value={formData.title} type="text" id="title" name="title" />
-            </div>
-            <div className='form-group'>
-              <label for="description">Survey Description</label>
-              {/* value={surveys.description ? surveys.description : formData.description} */}
-              <textarea required placeholder='A survey with questions about epic things' style={{ resize: "none" }} value={formData.description} onChange={onChange} type="text" id="description" name="description" />
-            </div>
-            {submittedDetails ? (
-              <>
-
-              </>
-
-            ) : (
-              <>
-                <div className='form-group' >
-                  <label for="public">Public or Private?</label>
-
-                  <select required onChange={onChange} name="public" id="public">
-                    <option value="true">Public 🔓</option>
-                    <option value="false">Private 🔒</option>
-                  </select>
-                </div>
-
-
-              </>
-            )}
-            <div className='form-group'>
-              <label for="title">Survey Color</label>
-              <div className='form-group colors'>
-                {colors.map((color) => (
-                  <div onClick={() => (handleColorChange(color))} className={`color ${surveyColor == color ? ("chosen") : ("")}`} style={{ background: color }}>
-                    {surveyColor === color ? (
-                      <div className='badge'>
-                        <FaCheck />
-                      </div>
-                    ) : (<></>)}
-                  </div>
-                ))}
-              </div>
-            </div>
-            {submittedDetails ? (
-
-              <Button type="submit" variety="outlined small">Update</Button>
-            ) : (
-              <Button type="submit" variety="regular "> Continue</Button>
-            )}
-          </form>
-
-        </Card>
-      </section>
-      <section>
-        <Card type={`surveyForm ${submittedDetails ? "" : "disabled"}`}>
-
-          <h3>Step 2: Add Questions</h3>
-          <QuestionForm />
-
-        </Card>
-      </section>
-
-      <section>
-        <Card type={`surveyForm ${submittedDetails ? "" : "disabled"}`}>
-
-          {questions && questions.length > 0 ? (
-
-            <>
-              <h3><span>{questions.length}</span> Questions </h3>
-              {questions.map((question) => (
-                <>
-                  <Question key={question._id} id={id} question={question} />
-                </>
-              ))}
-            </>
-          ) : (
-            <h4>No questions! 🤷‍♂️</h4>
-          )
-          }
-
-        </Card>
-
-        <Card type={`surveyForm ${submittedDetails && questions.length > 1 ? "" : "disabled"}`}>
-          <Button onClick={() => { setFinished(true) }} variety="regular maxwide">
-            {/* <Link to={`/survey/${id}`}> */}
-            Done ✔️
-            {/* </Link> */}
-          </Button>
-        </Card>
-        <Button onClick={handleDelete} variety="danger small">Delete Survey</Button>
-
-      </section>
-      <div className='container'>
-        <br />
-        <br />
+      <div className=''>
+        {id ? (
+          <h3>{surveys.title || formData.title} 📋</h3>
+        ) : (
+          <h3>New Survey 📋</h3>
+        )}
       </div>
+      <div style={{ height: '30px' }}>
+        <Stepper nonLinear activeStep={activeStep}>
+
+          <Step key="details" completed={completed[0]}>
+            <StepLabel>Survey Details</StepLabel>
+          </Step>
+
+          <Step key="questions" completed={completed[1]}>
+            <StepLabel>Add Questions</StepLabel>
+          </Step>
+          <Step completed={completed[2]}>
+            <StepLabel>Review</StepLabel>
+          </Step>
+        </Stepper>
+      </div>
+      <>
+        {RenderCurrentStep()}
+
+      </>
+      <>
+      <Button onClick={handleDelete} variant="contained" color="error" size="small">Delete Survey</Button>
+
+
+      </>
     </div>
   )
 }
