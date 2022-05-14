@@ -40,13 +40,11 @@ const MySurveys = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message)
     }
     if (!user) {
       navigate('/login')
     }
     dispatch(getMySurveys())
-    console.log(surveys)
     return () => {
       dispatch(reset())
     }
@@ -57,7 +55,9 @@ const MySurveys = () => {
   }
 
   return (
+    <>
     <animated.section className='contentContainer'>
+    <h3>My Surveys</h3>
 
       {surveys.length > 0 ? (
         <div className="surveys">
@@ -70,6 +70,7 @@ const MySurveys = () => {
       ) : (<p>🕸️ You have no surveys. <Link to="/create">Make One!</Link></p>)
       }
     </animated.section>
+    </>
   )
 }
 

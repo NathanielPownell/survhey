@@ -18,12 +18,8 @@ const AnswerForm = (props) => {
 
   const handleChange = (e) => {
     props.setAnswer(e.target.value)
-    console.log(props.answer)
   }
 
-  useEffect(() => {
-    console.log(question)
-  })
   return (
     <>
       {question &&

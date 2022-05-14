@@ -14,7 +14,6 @@ async function uploadImage(file) {
     }
   );
   const img = await res.json();
-  console.log(img);
   return img.secure_url;
 }
 

@@ -52,7 +52,6 @@ const createAnswer = asyncHandler(async (req, res) => {
     let { survey, question, body } = req.body
 
     if (!survey || !question || !body) {
-        console.log(survey, question, body)
         res.status(400)
         throw new Error('Please add all fields.')
     }

@@ -27,14 +27,7 @@ const updateQuestion = async (questionData, token) => {
 
 // Get All Public Surveys
 const getQuestionsBySurvey = async (id) => {
-    // const config = {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    // }
-    // console.log("CALLING GET ALL SURVEYS")
     const response = await axios.get(API_URL+ 'survey/' + id)
-    console.log(response.data)
     return response.data
 }
 

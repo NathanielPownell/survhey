@@ -33,9 +33,7 @@ const getAllSurveys = async (token) => {
             Authorization: `Bearer ${token}`,
         },
     }
-    console.log("CALLING GET ALL SURVEYS")
     const response = await axios.get(API_URL, config)
-    console.log(response.data)
     return response.data
 }
 

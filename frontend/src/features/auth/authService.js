@@ -22,13 +22,10 @@ const updateUser = async (userData, token) => {
         },
     }
 
-    console.log("THIS IS USER DATA: ", userData)
     const response = await axios.put(API_URL, userData, config)
 
-    console.log(response)
     if (response.data) {
         // localStorage.setItem('user', JSON.stringify(response.data))
-        console.log("response.data", response.data)
     }
 
     return response.data
@@ -46,7 +43,6 @@ const login = async (userData) => {
 }
 
 const deleteUser = async (id, token) => {
-    console.log("not workin")
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

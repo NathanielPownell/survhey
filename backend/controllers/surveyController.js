@@ -28,13 +28,11 @@ const getAllSurveys = asyncHandler(async (req, res) => {
 const getSurvey = asyncHandler(async (req, res) => {
     let survey = await Survey.findById(req.params.id)
     const surveyOwner = await User.findById(survey.user.toString())
-    // console.log(surveyOwner)
     const responseData = {
         ...survey,
         userImg: surveyOwner.img,
         userName: surveyOwner.name,
     }
-    // const questions = await Question.find({survey: req.params.id})
     res.status(200).json(responseData)
 })
 

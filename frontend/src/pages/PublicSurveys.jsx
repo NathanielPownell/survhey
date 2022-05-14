@@ -47,7 +47,6 @@ const PublicSurveys = () => {
       navigate('/login')
     }
     dispatch(getAllSurveys())
-    console.log(surveys)
     return () => {
       dispatch(reset())
     }

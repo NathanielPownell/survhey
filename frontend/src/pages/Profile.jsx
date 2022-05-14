@@ -43,8 +43,6 @@ const Profile = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData)
-        // if (uploadingImg) return;
         const userData = {
             img: formData,
             name: name,

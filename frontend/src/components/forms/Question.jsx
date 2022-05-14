@@ -32,7 +32,6 @@ const Question = ({ question, id }) => {
     }
     const handleChange = (e) => {
         setText(e.target.value)
-        console.log(text)
     }
 
     return (

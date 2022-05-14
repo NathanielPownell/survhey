@@ -35,7 +35,6 @@ const QuestionForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(options)
 
         formData.survey = id
 
@@ -45,7 +44,6 @@ const QuestionForm = (props) => {
             type: formData.type,
             choices: options,
         })
-        console.log(formData)
         setOptions([])
         dispatch(createQuestion({...formData, choices: options}))
         setFormData({
@@ -66,14 +64,10 @@ const QuestionForm = (props) => {
         if (e.target.name === "type" && e.target.value !== "1") {
             setOptions("")
         }
-        console.log(e.target.value)
     }
     const handleChangeOption = (e) => {
         setOption(e.target.value)
-
-
-        console.log(option)
-    }
+   }
 
     const handleAddOption = async () => {
         setOptions([...options, option])
@@ -83,7 +77,6 @@ const QuestionForm = (props) => {
             choices: options,
         }))
         setOption("")
-        console.log(options)
     }
 
     const handleRemove = async (option, prevState) => {
@@ -94,7 +87,6 @@ const QuestionForm = (props) => {
             ...prevFormState,
             choices: options,
         }))
-        console.log(options)
     }
 
     return (

@@ -11,6 +11,7 @@ import Spinner from '../components/Spinner'
 import { reset as resetQuestions } from '../features/questions/questionSlice'
 import { getUserSurveys } from '../features/surveys/surveySlice'
 import Surveys from '../components/Surveys'
+import { Avatar } from '@mui/material'
 
 const User = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
@@ -41,9 +42,7 @@ const User = () => {
                     <Card type="profile">
 
                         <div className='profile-image'>
-                            {user.viewing.data.img &&
-                                <div className="profile-image-img" style={{ background: `url(${user.viewing.data.img ? user.viewing.data.img : null})`, backgroundSize: "cover" }} />
-                            }
+                        <Avatar alt={user.viewing.data.name} src={user.viewing.data.img ? user.viewing.data.img : null} sx={{ width: 80, height: 80 }} />
                         </div>
 
 

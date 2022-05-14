@@ -54,7 +54,6 @@ export const deleteUser = createAsyncThunk('auth/delete', async (id, thunkAPI) =
     try {
         const token = thunkAPI.getState().auth.user.token
         // const id = thunkAPI.getState().auth.user._id
-        console.log(id)
         return await authService.deleteUser(id, token)
     }
     catch (error) {
@@ -68,7 +67,6 @@ export const participate = createAsyncThunk('auth/participate', async (_, thunkA
     try {
         const token = thunkAPI.getState().auth.user.token
         // const id = thunkAPI.getState().auth.user._id
-        // console.log(id)
         const user = { "id": thunkAPI.getState().auth.user._id}
         return await authService.participate(user, token)
     }

@@ -50,7 +50,6 @@ const CreateSurvey = () => {
   }
 
   useEffect(() => {
-    console.log(surveyColor)
     if (id) {
       setSubmittedDetails(true)
       dispatch(getQuestionsBySurvey(id))
@@ -58,7 +57,6 @@ const CreateSurvey = () => {
       setSurveyColor(surveys.color)
     }
     if (surveys) {
-      console.log('resetting surveys')
       dispatch(reset())
     }
     return () => {

@@ -158,7 +158,6 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
     // const {_id, name, email} = await User.findById(req.user.id)
-    console.log(req.user)
     res.status(200).json(req.user)
 })
 
@@ -180,7 +179,6 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 const participate = asyncHandler(async (req, res) => {
 
-    console.log(req.body)
     try {
         // const user = User.findById(req.body.id)
         User.findByIdAndUpdate(req.body.id.toString(), {
@@ -207,7 +205,6 @@ const getUser = asyncHandler(async (req, res) => {
     
     const id = req.params.id
     const viewing = await User.findById(id)
-    console.log(viewing)
     if (viewing) {
         res.status(200).json(viewing)
     } else {

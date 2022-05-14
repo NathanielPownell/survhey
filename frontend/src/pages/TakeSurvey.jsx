@@ -40,7 +40,6 @@ const TakeSurvey = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("submitted")
         setCurrentIndex(currentIndex + 1)
         dispatch(createAnswer({
             survey: surveys._id,
@@ -52,7 +51,6 @@ const TakeSurvey = () => {
 
     useEffect(() => {
         setCurrentQ(currentIndex)
-        console.log(currentQ)
     }, [currentIndex])
 
     if (finished) {

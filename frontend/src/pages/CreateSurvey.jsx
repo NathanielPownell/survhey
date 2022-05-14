@@ -69,7 +69,6 @@ const CreateSurvey = () => {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     if (isLastStep()) {
-      console.log("last")
       navigate('/mysurveys/')
     }
     setCompleted(newCompleted);
@@ -83,37 +82,8 @@ const CreateSurvey = () => {
   };
 
   const handleStep = (step) => () => {
-    // if (activeStep == 0) {
-    //   console.log("Put")
-    //   setFormData((prevState) => ({
-    //     ...prevState,
-    //     color: surveyColor,
-    //   }))
-    //   if (id) {
-    //     dispatch(updateSurvey(formData))
-    //   } else {
-    //     dispatch(createSurvey(formData))
-    //     dispatch(getQuestionsBySurvey(id))
-    //   }
-    // }
-    // if (activeStep === 2) {
-    //   navigate('/')
-    // }
     setActiveStep(step);
   };
-
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
-
 
   const handleDelete = () => {
     dispatch(deleteSurvey(id))
@@ -320,11 +290,18 @@ const CreateSurvey = () => {
             <p>{questions.length} questions</p>
             <ol>
 
+                  {questions.length > 0 ? (
+                    <>
+                    
               {questions.map((question) => (
                 <li>
                   {question.text}
                 </li>
               ))}
+              </>
+                  ) : (
+                    <div>No questions</div>
+                  )}
             </ol>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
