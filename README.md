@@ -3,6 +3,8 @@
 
 Welcome to my survey MERN CRUD application. Survhey is an online community that revolves around the creation and participation of surveys.
 
+[🚀 Launch App](https://survhey-app.herokuapp.com/)
+
 [🖥️ View Frontend](./frontend/)
 
 [🤖 View Backend](./backend/)
