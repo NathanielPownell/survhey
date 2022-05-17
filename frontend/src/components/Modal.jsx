@@ -1,5 +1,5 @@
 import React from 'react'
-import  './Modal.css'
+import  './css/Modal.css'
 import Card from './UI/Card'
 
 const Modal = (props) => {

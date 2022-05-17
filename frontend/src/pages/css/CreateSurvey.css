@@ -104,3 +104,29 @@
     opacity: 1;
     transform: translateX(0px) scale(1.02);
 }
+
+
+@media only screen and (max-width: 500px) {
+
+    .activeStep{
+        transform: 0;
+    }
+
+    .firstStep, .secondStep, .thirdStep{
+        transform: none;
+    }
+
+    .wizard {
+        display: block;
+    }
+    .stepContainer{
+        max-width: 100vw;
+        transform: 0;
+        /* display: block; */
+        /* display: flex; */
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        left: 0;
+    }
+  }

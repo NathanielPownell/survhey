@@ -6,7 +6,9 @@
   padding: 0; */
   box-sizing: border-box;
 }
-
+body {
+  overflow-x: hidden;
+}
 .app {
   text-align: center;
   background: rgb(189,4,255);
@@ -129,7 +131,7 @@ a {
   .contentContainer{
     padding: 0;
     margin: 0;
-    padding-top: 200px;
+    padding-top: 100px;
     align-items: center;
   }
   .surveys{

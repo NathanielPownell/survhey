@@ -98,7 +98,6 @@ const updateSurvey = asyncHandler(async (req, res) => {
     let { survey, title, public, description, enableanon, color } = req.body
     const user = req.user.id
 
-    console.log("Does this work??")
 
     if (!title || !user) {
         res.status(400)

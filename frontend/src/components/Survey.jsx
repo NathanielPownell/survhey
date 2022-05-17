@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './UI/Card'
 import Button from './UI/Button'
-import './Survey.css'
+import './css/Survey.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaTrash } from 'react-icons/fa'

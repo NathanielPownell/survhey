@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from './UI/Button';
 import { useTransition, animated, config } from 'react-spring'
 import cookiesImg from '../assets/cookies.png'
-import './Cookies.css'
+import './css/Cookies.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../features/auth/authSlice';
 

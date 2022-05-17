@@ -109,7 +109,7 @@ const Register = () => {
                             onChange={onChange} />
                     </div>
                     <div className="form-group">
-                    <Button disabled={formData.email && formData.name && formData.password && formData.password2 ? false : true} variety="regular loginBtn">
+                    <Button disabled={formData.email && formData.name && formData.password && formData.password2 && formData.password === formData.password2 ? false : true } variety="regular loginBtn">
                         Submit
                     </Button>
                     <a href="login">

@@ -235,6 +235,15 @@
 
 @media only screen and (max-width: 500px) {
 
+    .step {
+        min-width: 100vw;
+        height: 60vh;
+    }
+
+    .step label{
+        padding-left: 15px;
+    }
+
     .card{
       margin-inline: 0;
     }
